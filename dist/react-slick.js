@@ -1175,8 +1175,6 @@
                 _assertThisInitialized(_this),
                 "componentDidUpdate",
                 function() {
-                  _this.checkImagesLoad();
-
                   _this.props.onReInit && _this.props.onReInit();
 
                   if (_this.props.lazyLoad) {
@@ -1424,53 +1422,46 @@
 
               _defineProperty(
                 _assertThisInitialized(_this),
-                "checkImagesLoad",
-                function() {
-                  var images = document.querySelectorAll(".slick-slide img");
-                  var imagesCount = images.length,
-                    loadedCount = 0;
-                  Array.prototype.forEach.call(images, function(image) {
-                    var handler = function handler() {
-                      return (
-                        ++loadedCount &&
-                        loadedCount >= imagesCount &&
-                        _this.onWindowResized()
-                      );
+                "onClickImage",
+                function(image) {
+                  if (!image.onclick) {
+                    image.onclick = function() {
+                      return image.parentNode.focus();
                     };
+                  } else {
+                    var prevClickHandler = image.onclick;
 
-                    if (!image.onclick) {
-                      image.onclick = function() {
-                        return image.parentNode.focus();
+                    image.onclick = function() {
+                      prevClickHandler();
+                      image.parentNode.focus();
+                    };
+                  }
+                }
+              );
+
+              _defineProperty(
+                _assertThisInitialized(_this),
+                "onLoadImage",
+                function(image, handler) {
+                  if (!image.onload) {
+                    if (_this.props.lazyLoad) {
+                      image.onload = function() {
+                        _this.adaptHeight();
+
+                        _this.callbackTimers.push(
+                          setTimeout(_this.onWindowResized, _this.props.speed)
+                        );
                       };
                     } else {
-                      var prevClickHandler = image.onclick;
+                      image.onload = handler;
 
-                      image.onclick = function() {
-                        prevClickHandler();
-                        image.parentNode.focus();
+                      image.onerror = function() {
+                        handler();
+                        _this.props.onLazyLoadError &&
+                          _this.props.onLazyLoadError();
                       };
                     }
-
-                    if (!image.onload) {
-                      if (_this.props.lazyLoad) {
-                        image.onload = function() {
-                          _this.adaptHeight();
-
-                          _this.callbackTimers.push(
-                            setTimeout(_this.onWindowResized, _this.props.speed)
-                          );
-                        };
-                      } else {
-                        image.onload = handler;
-
-                        image.onerror = function() {
-                          handler();
-                          _this.props.onLazyLoadError &&
-                            _this.props.onLazyLoadError();
-                        };
-                      }
-                    }
-                  });
+                  }
                 }
               );
 
@@ -1546,12 +1537,11 @@
                       : false;
                   var _this$props = _this.props,
                     asNavFor = _this$props.asNavFor,
+                    currentSlide = _this$props.currentSlide,
                     beforeChange = _this$props.beforeChange,
                     onLazyLoad = _this$props.onLazyLoad,
                     speed = _this$props.speed,
-                    afterChange = _this$props.afterChange; // capture currentslide before state is updated
-
-                  var currentSlide = _this.state.currentSlide;
+                    afterChange = _this$props.afterChange;
 
                   var _slideHandler = Object(
                       _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
@@ -1588,7 +1578,7 @@
                   _this.setState(state, function() {
                     asNavFor &&
                       asNavFor.innerSlider.state.currentSlide !==
-                        _this.state.currentSlide &&
+                        currentSlide &&
                       asNavFor.innerSlider.slideHandler(index);
                     if (!nextState) return;
                     _this.animationEndCallback = setTimeout(function() {
