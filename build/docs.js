@@ -955,10 +955,10 @@ object-assign
                       u = !0;
                   }
               }
-            if (u) return r(o, t, "" === n ? "." + I(t, 0) : n), 1;
+            if (u) return r(o, t, "" === n ? "." + D(t, 0) : n), 1;
             if (((u = 0), (n = "" === n ? "." : n + ":"), Array.isArray(t)))
               for (var c = 0; c < t.length; c++) {
-                var s = n + I((a = t[c]), c);
+                var s = n + D((a = t[c]), c);
                 u += e(a, s, r, o);
               }
             else if (
@@ -971,7 +971,7 @@ object-assign
               "function" == typeof s)
             )
               for (t = s.call(t), c = 0; !(a = t.next()).done; )
-                u += e((a = a.value), (s = n + I(a, c++)), r, o);
+                u += e((a = a.value), (s = n + D(a, c++)), r, o);
             else
               "object" === a &&
                 b(
@@ -984,7 +984,7 @@ object-assign
             return u;
           })(e, "", t, n);
     }
-    function I(e, t) {
+    function D(e, t) {
       return "object" == typeof e && null !== e && null != e.key
         ? (function(e) {
             var t = { "=": "=0", ":": "=2" };
@@ -997,7 +997,7 @@ object-assign
           })(e.key)
         : t.toString(36);
     }
-    function D(e, t) {
+    function I(e, t) {
       e.func.call(e.context, t, e.count++);
     }
     function A(e, t, n) {
@@ -1048,7 +1048,7 @@ object-assign
           },
           forEach: function(e, t, n) {
             if (null == e) return e;
-            z(e, D, (t = R(null, null, t, n))), L(t);
+            z(e, I, (t = R(null, null, t, n))), L(t);
           },
           count: function(e) {
             return z(
@@ -1407,10 +1407,10 @@ object-assign
       }
       return 5 === (e = e[R]).tag || 6 === e.tag ? e : null;
     }
-    function I(e) {
+    function D(e) {
       return !(e = e[R]) || (5 !== e.tag && 6 !== e.tag) ? null : e;
     }
-    function D(e) {
+    function I(e) {
       if (5 === e.tag || 6 === e.tag) return e.stateNode;
       i("33");
     }
@@ -1790,7 +1790,7 @@ object-assign
     }
     function Le() {}
     var ze = !1;
-    function Ie(e, t) {
+    function De(e, t) {
       if (ze) return e(t);
       ze = !0;
       try {
@@ -1799,7 +1799,7 @@ object-assign
         (ze = !1), (null !== xe || null !== Pe) && (Le(), Ne());
       }
     }
-    var De = {
+    var Ie = {
       color: !0,
       date: !0,
       datetime: !0,
@@ -1818,7 +1818,7 @@ object-assign
     };
     function Ae(e) {
       var t = e && e.nodeName && e.nodeName.toLowerCase();
-      return "input" === t ? !!De[e.type] : "textarea" === t;
+      return "input" === t ? !!Ie[e.type] : "textarea" === t;
     }
     function We(e) {
       return (
@@ -2238,7 +2238,7 @@ object-assign
       N(e);
     }
     function jt(e) {
-      if (Ve(D(e))) return e;
+      if (Ve(I(e))) return e;
     }
     function Nt(e, t) {
       if ("change" === e) return t;
@@ -2248,18 +2248,18 @@ object-assign
       xt && (xt.detachEvent("onpropertychange", Lt), (Pt = xt = null));
     }
     function Lt(e) {
-      "value" === e.propertyName && jt(Pt) && Ie(Ct, (e = Ot(Pt, e, We(e))));
+      "value" === e.propertyName && jt(Pt) && De(Ct, (e = Ot(Pt, e, We(e))));
     }
     function zt(e, t, n) {
       "focus" === e
         ? (Rt(), (Pt = n), (xt = t).attachEvent("onpropertychange", Lt))
         : "blur" === e && Rt();
     }
-    function It(e) {
+    function Dt(e) {
       if ("selectionchange" === e || "keyup" === e || "keydown" === e)
         return jt(Pt);
     }
-    function Dt(e, t) {
+    function It(e, t) {
       if ("click" === e) return jt(t);
     }
     function At(e, t) {
@@ -2272,7 +2272,7 @@ object-assign
         eventTypes: Tt,
         _isInputEventSupported: Mt,
         extractEvents: function(e, t, n, r) {
-          var o = t ? D(t) : window,
+          var o = t ? I(t) : window,
             l = void 0,
             i = void 0,
             a = o.nodeName && o.nodeName.toLowerCase();
@@ -2282,11 +2282,11 @@ object-assign
               : Ae(o)
               ? Mt
                 ? (l = At)
-                : ((l = It), (i = zt))
+                : ((l = Dt), (i = zt))
               : (a = o.nodeName) &&
                 "input" === a.toLowerCase() &&
                 ("checkbox" === o.type || "radio" === o.type) &&
-                (l = Dt),
+                (l = It),
             l && (l = l(e, t)))
           )
             return Ot(l, n, r);
@@ -2420,9 +2420,9 @@ object-assign
               (a = Kt.pointerLeave),
               (u = Kt.pointerEnter),
               (c = "pointer"));
-          var s = null == l ? o : D(l);
+          var s = null == l ? o : I(l);
           if (
-            ((o = null == t ? o : D(t)),
+            ((o = null == t ? o : I(t)),
             ((e = i.getPooled(a, l, n, r)).type = c + "leave"),
             (e.target = s),
             (e.relatedTarget = o),
@@ -2940,7 +2940,7 @@ object-assign
         } else
           e = { topLevelType: e, nativeEvent: t, targetInst: n, ancestors: [] };
         try {
-          Ie(kn, e);
+          De(kn, e);
         } finally {
           (e.topLevelType = null),
             (e.nativeEvent = null),
@@ -2998,7 +2998,7 @@ object-assign
         r = Ln(r);
       }
     }
-    function In() {
+    function Dn() {
       for (var e = window, t = Rn(); t instanceof e.HTMLIFrameElement; ) {
         try {
           var n = "string" == typeof t.contentWindow.location.href;
@@ -3010,7 +3010,7 @@ object-assign
       }
       return t;
     }
-    function Dn(e) {
+    function In(e) {
       var t = e && e.nodeName && e.nodeName.toLowerCase();
       return (
         t &&
@@ -3025,7 +3025,7 @@ object-assign
       );
     }
     function An(e) {
-      var t = In(),
+      var t = Dn(),
         n = e.focusedElem,
         r = e.selectionRange;
       if (
@@ -3046,7 +3046,7 @@ object-assign
           );
         })(n.ownerDocument.documentElement, n)
       ) {
-        if (null !== r && Dn(n))
+        if (null !== r && In(n))
           if (
             ((t = r.start),
             void 0 === (e = r.end) && (e = t),
@@ -3111,7 +3111,7 @@ object-assign
         t.window === t ? t.document : 9 === t.nodeType ? t : t.ownerDocument;
       return Bn || null == Un || Un !== Rn(n)
         ? null
-        : ("selectionStart" in (n = Un) && Dn(n)
+        : ("selectionStart" in (n = Un) && In(n)
             ? (n = { start: n.selectionStart, end: n.selectionEnd })
             : (n = {
                 anchorNode: (n = (
@@ -3155,7 +3155,7 @@ object-assign
           o = !l;
         }
         if (o) return null;
-        switch (((l = t ? D(t) : window), e)) {
+        switch (((l = t ? I(t) : window), e)) {
           case "focus":
             (Ae(l) || "true" === l.contentEditable) &&
               ((Un = l), (Hn = t), (Vn = null));
@@ -3252,8 +3252,8 @@ object-assign
       )
     ),
       (w = A),
-      (S = I),
-      (k = D),
+      (S = D),
+      (k = I),
       C.injectEventPluginsByName({
         SimpleEventPlugin: En,
         EnterLeaveEventPlugin: Gt,
@@ -3537,10 +3537,10 @@ object-assign
     function zr(e) {
       xr(Nr), xr(jr);
     }
-    function Ir(e) {
+    function Dr(e) {
       xr(Nr), xr(jr);
     }
-    function Dr(e, t, n) {
+    function Ir(e, t, n) {
       jr.current !== Cr && i("168"), Pr(jr, t), Pr(Nr, n);
     }
     function Ar(e, t, n) {
@@ -4251,8 +4251,8 @@ object-assign
       Ro = 64,
       Lo = 128,
       zo = Be.ReactCurrentDispatcher,
-      Io = 0,
-      Do = null,
+      Do = 0,
+      Io = null,
       Ao = null,
       Wo = null,
       Fo = null,
@@ -4275,8 +4275,8 @@ object-assign
     }
     function Go(e, t, n, r, o, l) {
       if (
-        ((Io = l),
-        (Do = t),
+        ((Do = l),
+        (Io = t),
         (Wo = null !== e ? e.memoizedState : null),
         (zo.current = null === Wo ? sl : fl),
         (t = n(r, o)),
@@ -4295,13 +4295,13 @@ object-assign
       }
       return (
         (zo.current = cl),
-        ((e = Do).memoizedState = Fo),
+        ((e = Io).memoizedState = Fo),
         (e.expirationTime = Vo),
         (e.updateQueue = Bo),
         (e.effectTag |= qo),
         (e = null !== Ao && null !== Ao.next),
-        (Io = 0),
-        (Ho = Uo = Fo = Wo = Ao = Do = null),
+        (Do = 0),
+        (Ho = Uo = Fo = Wo = Ao = Io = null),
         (Vo = 0),
         (Bo = null),
         (qo = 0),
@@ -4311,8 +4311,8 @@ object-assign
     }
     function Zo() {
       (zo.current = cl),
-        (Io = 0),
-        (Ho = Uo = Fo = Wo = Ao = Do = null),
+        (Do = 0),
+        (Ho = Uo = Fo = Wo = Ao = Io = null),
         (Vo = 0),
         (Bo = null),
         (qo = 0),
@@ -4387,7 +4387,7 @@ object-assign
           s = !1;
         do {
           var f = c.expirationTime;
-          f < Io
+          f < Do
             ? (s || ((s = !0), (u = a), (o = l)), f > Vo && (Vo = f))
             : (l = c.eagerReducer === e ? c.eagerState : e(l, c.action)),
             (a = c),
@@ -4447,11 +4447,11 @@ object-assign
     function ul(e, t, n) {
       25 > Yo || i("301");
       var r = e.alternate;
-      if (e === Do || (null !== r && r === Do))
+      if (e === Io || (null !== r && r === Io))
         if (
           (($o = !0),
           (e = {
-            expirationTime: Io,
+            expirationTime: Do,
             action: n,
             eagerReducer: null,
             eagerState: null,
@@ -4545,7 +4545,7 @@ object-assign
               dispatch: null,
               lastRenderedReducer: e,
               lastRenderedState: t
-            }).dispatch = ul.bind(null, Do, e)),
+            }).dispatch = ul.bind(null, Io, e)),
             [r.memoizedState, e]
           );
         },
@@ -4562,7 +4562,7 @@ object-assign
               dispatch: null,
               lastRenderedReducer: tl,
               lastRenderedState: e
-            }).dispatch = ul.bind(null, Do, e)),
+            }).dispatch = ul.bind(null, Io, e)),
             [t.memoizedState, e]
           );
         },
@@ -4885,8 +4885,8 @@ object-assign
     function Nl(e) {
       var t = e.stateNode;
       t.pendingContext
-        ? Dr(0, t.pendingContext, t.pendingContext !== t.context)
-        : t.context && Dr(0, t.context, !1),
+        ? Ir(0, t.pendingContext, t.pendingContext !== t.context)
+        : t.context && Ir(0, t.context, !1),
         ko(e, t.containerInfo);
     }
     function Ml(e, t, n) {
@@ -5272,8 +5272,8 @@ object-assign
       i("156");
     }
     var zl = { current: null },
-      Il = null,
       Dl = null,
+      Il = null,
       Al = null;
     function Wl(e, t) {
       var n = e.type._context;
@@ -5284,7 +5284,7 @@ object-assign
       xr(zl), (e.type._context._currentValue = t);
     }
     function Ul(e, t) {
-      (Il = e), (Al = Dl = null);
+      (Dl = e), (Al = Il = null);
       var n = e.contextDependencies;
       null !== n && n.expirationTime >= t && (Sl = !0),
         (e.contextDependencies = null);
@@ -5297,11 +5297,11 @@ object-assign
           (("number" == typeof t && 1073741823 !== t) ||
             ((Al = e), (t = 1073741823)),
           (t = { context: e, observedBits: t, next: null }),
-          null === Dl
-            ? (null === Il && i("308"),
-              (Dl = t),
-              (Il.contextDependencies = { first: t, expirationTime: 0 }))
-            : (Dl = Dl.next = t)),
+          null === Il
+            ? (null === Dl && i("308"),
+              (Il = t),
+              (Dl.contextDependencies = { first: t, expirationTime: 0 }))
+            : (Il = Il.next = t)),
         e._currentValue
       );
     }
@@ -5978,7 +5978,7 @@ object-assign
         case 3:
           return (
             _o(),
-            Ir(),
+            Dr(),
             0 != (64 & (t = e.effectTag)) && i("285"),
             (e.effectTag = (-2049 & t) | 64),
             e
@@ -6011,8 +6011,8 @@ object-assign
       Ri = null,
       Li = !1,
       zi = null,
-      Ii = null,
       Di = null,
+      Ii = null,
       Ai = null;
     function Wi() {
       if (null !== Pi)
@@ -6024,7 +6024,7 @@ object-assign
               null != n && zr();
               break;
             case 3:
-              _o(), Ir();
+              _o(), Dr();
               break;
             case 5:
               Oo(t);
@@ -6178,7 +6178,7 @@ object-assign
       }
     }
     function Vi() {
-      null !== Ii && Sr(Ii), null !== Di && Di();
+      null !== Di && Sr(Di), null !== Ii && Ii();
     }
     function Bi(e, t) {
       (Li = xi = !0), e.current === t && i("177");
@@ -6222,8 +6222,8 @@ object-assign
             : (r = t.firstEffect),
           hr = _n,
           yr = (function() {
-            var e = In();
-            if (Dn(e)) {
+            var e = Dn();
+            if (In(e)) {
               if (("selectionStart" in e))
                 var t = { start: e.selectionStart, end: e.selectionEnd };
               else
@@ -6327,7 +6327,7 @@ object-assign
       }
       if (null !== r && null !== zi) {
         var u = function(e, t) {
-          Di = Ii = zi = null;
+          Ii = Di = zi = null;
           var n = oa;
           oa = !0;
           do {
@@ -6348,10 +6348,10 @@ object-assign
             0 !== (n = e.expirationTime) && ka(e, n),
             sa || oa || Pa(1073741823, !1);
         }.bind(null, e, r);
-        (Ii = l.unstable_runWithPriority(l.unstable_NormalPriority, function() {
+        (Di = l.unstable_runWithPriority(l.unstable_NormalPriority, function() {
           return wr(u);
         })),
-          (Di = u);
+          (Ii = u);
       }
       (xi = Li = !1),
         "function" == typeof Ur && Ur(t.stateNode),
@@ -6384,7 +6384,7 @@ object-assign
                 break;
               case 3:
                 _o(),
-                  Ir(),
+                  Dr(),
                   (u = t.stateNode).pendingContext &&
                     ((u.context = u.pendingContext), (u.pendingContext = null)),
                   (null !== l && null !== l.child) ||
@@ -6699,7 +6699,7 @@ object-assign
           if (t) for (; null !== Pi && !Oa(); ) Pi = $i(Pi);
           else for (; null !== Pi; ) Pi = $i(Pi);
         } catch (t) {
-          if (((Al = Dl = Il = null), Zo(), null === Pi)) (o = !0), Ma(t);
+          if (((Al = Il = Dl = null), Zo(), null === Pi)) (o = !0), Ma(t);
           else {
             null === Pi && i("271");
             var l = Pi,
@@ -6824,7 +6824,7 @@ object-assign
         }
         break;
       }
-      if (((xi = !1), (_i.current = n), (Al = Dl = Il = null), Zo(), o))
+      if (((xi = !1), (_i.current = n), (Al = Il = Dl = null), Zo(), o))
         (Ci = null), (e.finishedWork = null);
       else if (null !== Pi) e.finishedWork = null;
       else {
@@ -7189,7 +7189,7 @@ object-assign
         (sa = r) || oa || Pa(1073741823, !1);
       }
     }
-    function Ia(e, t, n, r, o) {
+    function Da(e, t, n, r, o) {
       var l = t.current;
       e: if (n) {
         t: {
@@ -7230,9 +7230,9 @@ object-assign
         r
       );
     }
-    function Da(e, t, n, r) {
+    function Ia(e, t, n, r) {
       var o = t.current;
-      return Ia(e, t, n, (o = Xi(Sa(), o)), r);
+      return Da(e, t, n, (o = Xi(Sa(), o)), r);
     }
     function Aa(e) {
       if (!(e = e.current).child) return null;
@@ -7392,7 +7392,7 @@ object-assign
         var t = this._root._internalRoot,
           n = this._expirationTime,
           r = new Fa();
-        return Ia(e, t, null, n, r._onCommit), r;
+        return Da(e, t, null, n, r._onCommit), r;
       }),
       (Wa.prototype.then = function(e) {
         if (this._didComplete) e();
@@ -7455,7 +7455,7 @@ object-assign
           r = new Fa();
         return (
           null !== (t = void 0 === t ? null : t) && r.then(t),
-          Da(e, n, null, r._onCommit),
+          Ia(e, n, null, r._onCommit),
           r
         );
       }),
@@ -7464,7 +7464,7 @@ object-assign
           n = new Fa();
         return (
           null !== (e = void 0 === e ? null : e) && n.then(e),
-          Da(null, t, null, n._onCommit),
+          Ia(null, t, null, n._onCommit),
           n
         );
       }),
@@ -7473,7 +7473,7 @@ object-assign
           o = new Fa();
         return (
           null !== (n = void 0 === n ? null : n) && o.then(n),
-          Da(t, r, e, o._onCommit),
+          Ia(t, r, e, o._onCommit),
           o
         );
       }),
@@ -7566,8 +7566,8 @@ object-assign
       },
       __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: {
         Events: [
-          I,
           D,
+          I,
           A,
           C.injectEventPluginsByName,
           b,
@@ -7810,13 +7810,13 @@ object-assign
           R = !1,
           L = 0,
           z = 33,
-          I = 33;
+          D = 33;
         _ = function() {
           return L <= t.unstable_now();
         };
-        var D = new MessageChannel(),
-          A = D.port2;
-        D.port1.onmessage = function() {
+        var I = new MessageChannel(),
+          A = I.port2;
+        I.port1.onmessage = function() {
           j = !1;
           var e = C,
             n = N;
@@ -7840,9 +7840,9 @@ object-assign
         var W = function(e) {
           if (null !== C) {
             E(W);
-            var t = e - L + I;
-            t < I && z < I ? (8 > t && (t = 8), (I = t < z ? z : t)) : (z = t),
-              (L = e + I),
+            var t = e - L + D;
+            t < D && z < D ? (8 > t && (t = 8), (D = t < z ? z : t)) : (z = t),
+              (L = e + D),
               j || ((j = !0), A.postMessage(void 0));
           } else M = !1;
         };
@@ -8324,8 +8324,8 @@ object-assign
               ? ((g = o ? i : i - 1), (y = o ? 0 : i - 1))
               : g >= i &&
                 ((y = g - i), o ? i % f != 0 && (y = 0) : (y = i - d)),
-            (v = I(p({}, e, { slideIndex: g }))),
-            (b = I(p({}, e, { slideIndex: y }))),
+            (v = D(p({}, e, { slideIndex: g }))),
+            (b = D(p({}, e, { slideIndex: y }))),
             o || (v === b && (g = y), (v = b)),
             u && a.concat(m(p({}, e, { currentSlide: g }))),
             h
@@ -8435,7 +8435,7 @@ object-assign
           o && l && i && e.preventDefault();
           var _,
             T = {},
-            O = I(t);
+            O = D(t);
           (b.curX = e.touches ? e.touches[0].pageX : e.clientX),
             (b.curY = e.touches ? e.touches[0].pageY : e.clientY),
             (b.swipeLength = Math.round(
@@ -8513,7 +8513,7 @@ object-assign
           }
           y.triggerSlideHandler = v;
         } else {
-          var g = I(t);
+          var g = D(t);
           y.trackStyle = z(p({}, t, { left: g }));
         }
         return y;
@@ -8637,7 +8637,7 @@ object-assign
           t
         );
       },
-      I = function(e) {
+      D = function(e) {
         if (e.unslick) return 0;
         R(e, [
           "slideIndex",
@@ -8671,7 +8671,7 @@ object-assign
         var v = 0;
         if (
           (l
-            ? ((v = -D(e)),
+            ? ((v = -I(e)),
               u % s != 0 && r + s > u && (v = -(r > u ? c - (r - u) : u % s)),
               a && (v += parseInt(c / 2)))
             : (u % s != 0 && r + s > u && (v = c - (u % s)),
@@ -8682,11 +8682,11 @@ object-assign
           var b,
             g = i.a.findDOMNode(o);
           if (
-            ((b = r + D(e)),
+            ((b = r + I(e)),
             (t = (n = g && g.childNodes[b]) ? -1 * n.offsetLeft : 0),
             !0 === a)
           ) {
-            (b = l ? r + D(e) : r), (n = g && g.children[b]), (t = 0);
+            (b = l ? r + I(e) : r), (n = g && g.children[b]), (t = 0);
             for (var E = 0; E < b; E++)
               t -= g && g.children[E] && g.children[E].offsetWidth;
             (t -= parseInt(e.centerPadding)),
@@ -8695,7 +8695,7 @@ object-assign
         }
         return t;
       },
-      D = function(e) {
+      I = function(e) {
         return e.unslick || !e.infinite
           ? 0
           : e.variableWidth
@@ -8706,7 +8706,7 @@ object-assign
         return e.unslick || !e.infinite ? 0 : e.slideCount;
       },
       W = function(e) {
-        return 1 === e.slideCount ? 1 : D(e) + e.slideCount + A(e);
+        return 1 === e.slideCount ? 1 : I(e) + e.slideCount + A(e);
       },
       F = function(e) {
         return e.targetSlide > e.currentSlide
@@ -8932,7 +8932,7 @@ object-assign
               e.infinite && !1 === e.fade)
             ) {
               var v = i - s;
-              v <= D(e) &&
+              v <= I(e) &&
                 i !== e.slidesToShow &&
                 ((t = -v) >= a && (p = c),
                 (y = Z(K({}, e, { index: t }))),
@@ -9645,7 +9645,7 @@ object-assign
             je(Pe(n), "updateState", function(e, t, r) {
               var l = _(e);
               (e = Oe({}, e, l, { slideIndex: l.currentSlide })),
-                (e = Oe({}, e, { left: I(e) }));
+                (e = Oe({}, e, { left: D(e) }));
               var i = L(e);
               (t ||
                 o.a.Children.count(n.props.children) !==
@@ -9658,7 +9658,7 @@ object-assign
                 var e = 0,
                   t = 0,
                   r = [],
-                  l = D(
+                  l = I(
                     Oe({}, n.props, n.state, {
                       slideCount: n.props.children.length
                     })
@@ -9686,10 +9686,10 @@ object-assign
               } else {
                 var p = o.a.Children.count(n.props.children),
                   d = Oe({}, n.props, n.state, { slideCount: p }),
-                  m = D(d) + A(d) + p,
+                  m = I(d) + A(d) + p,
                   h = (100 / n.props.slidesToShow) * m,
                   y = 100 / m,
-                  v = (-y * (D(d) + n.state.currentSlide) * h) / 100;
+                  v = (-y * (I(d) + n.state.currentSlide) * h) / 100;
                 n.props.centerMode && (v += (100 - (y * h) / 100) / 2);
                 var b = { width: h + "%", left: v + "%" };
                 n.setState({ slideWidth: y + "%", trackStyle: b });
@@ -9720,18 +9720,6 @@ object-assign
                       t(), n.props.onLazyLoadError && n.props.onLazyLoadError();
                     })));
             }),
-            je(Pe(n), "checkImagesLoad", function() {
-              var e = document.querySelectorAll(".slick-slide img"),
-                t = e.length,
-                r = 0,
-                o = function() {
-                  return ++r && r >= t && n.onWindowResized();
-                };
-              Array.prototype.forEach.call(e, function(e) {
-                (e.onclick = n.onClickImage.bind(e)),
-                  (e.onload = n.onLoadImage.bind(e, o));
-              });
-            }),
             je(Pe(n), "progressiveLazyLoad", function() {
               for (
                 var e = [],
@@ -9744,7 +9732,7 @@ object-assign
                   e.push(r);
                   break;
                 }
-              for (var o = n.state.currentSlide - 1; o >= -D(t); o--)
+              for (var o = n.state.currentSlide - 1; o >= -I(t); o--)
                 if (n.state.lazyLoadedList.indexOf(o) < 0) {
                   e.push(o);
                   break;
@@ -10188,8 +10176,8 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Ie() {
-      return (Ie =
+    function De() {
+      return (De =
         Object.assign ||
         function(e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -10200,7 +10188,7 @@ object-assign
           return e;
         }).apply(this, arguments);
     }
-    function De(e) {
+    function Ie(e) {
       for (var t = 1; t < arguments.length; t++) {
         var n = null != arguments[t] ? arguments[t] : {},
           r = Object.keys(n);
@@ -10369,8 +10357,8 @@ object-assign
                       return e.breakpoint === n.state.breakpoint;
                     }))[0].settings
                     ? "unslick"
-                    : De({}, Le, this.props, t[0].settings)
-                  : De({}, Le, this.props)).centerMode &&
+                    : Ie({}, Le, this.props, t[0].settings)
+                  : Ie({}, Le, this.props)).centerMode &&
                   (e.slidesToScroll, (e.slidesToScroll = 1)),
                   e.fade &&
                     (e.slidesToShow,
@@ -10436,7 +10424,7 @@ object-assign
                   l.length <= e.slidesToShow && (e.unslick = !0),
                   o.a.createElement(
                     Ne,
-                    Ie({ ref: this.innerSliderRefHandler }, e),
+                    De({ ref: this.innerSliderRefHandler }, e),
                     l
                   )
                 );
@@ -11584,15 +11572,15 @@ object-assign
           })(e)
         : t;
     }
-    function It(e) {
-      return (It = Object.setPrototypeOf
+    function Dt(e) {
+      return (Dt = Object.setPrototypeOf
         ? Object.getPrototypeOf
         : function(e) {
             return e.__proto__ || Object.getPrototypeOf(e);
           })(e);
     }
-    function Dt(e, t) {
-      return (Dt =
+    function It(e, t) {
+      return (It =
         Object.setPrototypeOf ||
         function(e, t) {
           return (e.__proto__ = t), e;
@@ -11605,7 +11593,7 @@ object-assign
             if (!(e instanceof t))
               throw new TypeError("Cannot call a class as a function");
           })(this, t),
-          zt(this, It(t).apply(this, arguments))
+          zt(this, Dt(t).apply(this, arguments))
         );
       }
       var n, l, i;
@@ -11618,7 +11606,7 @@ object-assign
           (e.prototype = Object.create(t && t.prototype, {
             constructor: { value: e, writable: !0, configurable: !0 }
           })),
-            t && Dt(e, t);
+            t && It(e, t);
         })(t, r["Component"]),
         (n = t),
         (l = [
@@ -12771,8 +12759,8 @@ object-assign
         );
       })(),
       zn = "https://s3.amazonaws.com/static.neostack.com/img/react-slick";
-    function In(e) {
-      return (In =
+    function Dn(e) {
+      return (Dn =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -12786,7 +12774,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Dn(e, t) {
+    function In(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -12796,7 +12784,7 @@ object-assign
       }
     }
     function An(e, t) {
-      return !t || ("object" !== In(t) && "function" != typeof t)
+      return !t || ("object" !== Dn(t) && "function" != typeof t)
         ? (function(e) {
             if (void 0 === e)
               throw new ReferenceError(
@@ -12886,8 +12874,8 @@ object-assign
               );
             }
           }
-        ]) && Dn(n.prototype, l),
-        i && Dn(n, i),
+        ]) && In(n.prototype, l),
+        i && In(n, i),
         t
       );
     })();
@@ -13958,8 +13946,8 @@ object-assign
         t
       );
     })();
-    function Ir(e) {
-      return (Ir =
+    function Dr(e) {
+      return (Dr =
         "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
           ? function(e) {
               return typeof e;
@@ -13973,7 +13961,7 @@ object-assign
                 : typeof e;
             })(e);
     }
-    function Dr(e, t) {
+    function Ir(e, t) {
       for (var n = 0; n < t.length; n++) {
         var r = t[n];
         (r.enumerable = r.enumerable || !1),
@@ -13983,7 +13971,7 @@ object-assign
       }
     }
     function Ar(e, t) {
-      return !t || ("object" !== Ir(t) && "function" != typeof t)
+      return !t || ("object" !== Dr(t) && "function" != typeof t)
         ? (function(e) {
             if (void 0 === e)
               throw new ReferenceError(
@@ -14094,8 +14082,8 @@ object-assign
               );
             }
           }
-        ]) && Dr(n.prototype, l),
-        i && Dr(n, i),
+        ]) && Ir(n.prototype, l),
+        i && Ir(n, i),
         t
       );
     })();
