@@ -168,7 +168,6 @@ export class InnerSlider extends React.Component {
     });
   };
   componentDidUpdate = () => {
-    // this.checkImagesLoad();
     this.props.onReInit && this.props.onReInit();
     if (this.props.lazyLoad) {
       let slidesToLoad = getOnDemandLazySlides({
@@ -325,17 +324,6 @@ export class InnerSlider extends React.Component {
     }
   };
 
-  checkImagesLoad = () => {
-    let images = document.querySelectorAll(".slick-slide img");
-    let imagesCount = images.length,
-      loadedCount = 0;
-    let handler = () =>
-      ++loadedCount && loadedCount >= imagesCount && this.onWindowResized();
-    Array.prototype.forEach.call(images, image => {
-      image.onclick = this.onClickImage.bind(image);
-      image.onload = this.onLoadImage.bind(image, handler);
-    });
-  };
   progressiveLazyLoad = () => {
     let slidesToLoad = [];
     const spec = { ...this.props, ...this.state };
