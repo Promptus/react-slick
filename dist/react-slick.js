@@ -1537,11 +1537,12 @@
                       : false;
                   var _this$props = _this.props,
                     asNavFor = _this$props.asNavFor,
-                    currentSlide = _this$props.currentSlide,
                     beforeChange = _this$props.beforeChange,
                     onLazyLoad = _this$props.onLazyLoad,
                     speed = _this$props.speed,
-                    afterChange = _this$props.afterChange;
+                    afterChange = _this$props.afterChange; // capture currentslide before state is updated
+
+                  var currentSlide = _this.state.currentSlide;
 
                   var _slideHandler = Object(
                       _utils_innerSliderUtils__WEBPACK_IMPORTED_MODULE_5__[
