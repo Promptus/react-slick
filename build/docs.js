@@ -9752,11 +9752,11 @@ object-assign
                   arguments[1],
                 r = n.props,
                 o = r.asNavFor,
-                l = r.currentSlide,
-                i = r.beforeChange,
-                a = r.onLazyLoad,
-                u = r.speed,
-                c = r.afterChange,
+                l = r.beforeChange,
+                i = r.onLazyLoad,
+                a = r.speed,
+                u = r.afterChange,
+                c = n.state.currentSlide,
                 s = T(
                   Oe({ index: e }, n.props, n.state, {
                     trackRef: n.track,
@@ -9766,14 +9766,14 @@ object-assign
                 f = s.state,
                 p = s.nextState;
               if (f) {
-                i && i(l, f.currentSlide);
+                l && l(c, f.currentSlide);
                 var d = f.lazyLoadedList.filter(function(e) {
                   return n.state.lazyLoadedList.indexOf(e) < 0;
                 });
-                a && d.length > 0 && a(d),
+                i && d.length > 0 && i(d),
                   n.setState(f, function() {
                     o &&
-                      o.innerSlider.state.currentSlide !== l &&
+                      o.innerSlider.state.currentSlide !== c &&
                       o.innerSlider.slideHandler(e),
                       p &&
                         (n.animationEndCallback = setTimeout(function() {
@@ -9785,10 +9785,10 @@ object-assign
                                 return n.setState({ animating: e });
                               }, 10)
                             ),
-                              c && c(f.currentSlide),
+                              u && u(f.currentSlide),
                               delete n.animationEndCallback;
                           });
-                        }, u));
+                        }, a));
                   });
               }
             }),
